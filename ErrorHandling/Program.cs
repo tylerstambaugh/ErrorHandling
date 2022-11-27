@@ -22,10 +22,10 @@ public static class ErrorHandling
     {
         try
         {
-           result = Int32.Parse(input);
-            return true;    
+            result = Int32.Parse(input);
+            return true;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             result = 69;
             return false;
@@ -34,7 +34,17 @@ public static class ErrorHandling
 
     public static void DisposableResourcesAreDisposedWhenExceptionIsThrown(IDisposable disposableObject)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        try
+        {
+            disposableObject.Dispose();
+            throw new System.Exception();
+        }
+
+        catch (Exception e)
+        {
+            disposableObject.Dispose();
+            throw new System.Exception();
+        }
     }
 }
 

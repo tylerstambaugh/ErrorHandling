@@ -8,12 +8,28 @@ public static class ErrorHandling
 
     public static int? HandleErrorByReturningNullableType(string input)
     {
-        return null;
+        try
+        {
+            return Int32.Parse(input);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     public static bool HandleErrorWithOutParam(string input, out int result)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        try
+        {
+           result = Int32.Parse(input);
+            return true;    
+        }
+        catch(Exception ex)
+        {
+            result = 69;
+            return false;
+        }
     }
 
     public static void DisposableResourcesAreDisposedWhenExceptionIsThrown(IDisposable disposableObject)
@@ -21,3 +37,7 @@ public static class ErrorHandling
         throw new NotImplementedException("You need to implement this function.");
     }
 }
+
+
+
+// https://msdn.microsoft.com/en-us/library/t3c3bfhx.aspx?f=255&MSPPError=-2147217396
